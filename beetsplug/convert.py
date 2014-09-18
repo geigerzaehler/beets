@@ -164,6 +164,8 @@ def convert_item(dest_dir, keep_new, path_formats, format, pretend=False):
         # creation inside this function.)
         if not pretend:
             with _fs_lock:
+                log.debug(u'creating directory for {0}'
+                          .format(util.displayable_path(dest)))
                 util.mkdirall(dest)
 
         if os.path.exists(util.syspath(dest)):

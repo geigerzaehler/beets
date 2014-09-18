@@ -24,6 +24,9 @@ from collections import defaultdict
 import traceback
 import subprocess
 import platform
+import logging
+
+log = logging.getLogger('beets')
 
 
 MAX_FILENAME_LENGTH = 200
@@ -206,6 +209,7 @@ def mkdirall(path):
     parent).
     """
     for ancestor in ancestry(path):
+        log.debug(u'mkdirall {0}'.format(displayable_path(syspath(ancestor))))
         if not os.path.isdir(syspath(ancestor)):
             try:
                 os.mkdir(syspath(ancestor))
